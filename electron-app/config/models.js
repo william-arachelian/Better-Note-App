@@ -9,67 +9,7 @@ const sequelize = databaseConnection()
  * TODO Add a check to make sure the child and parent ids are valid
  */
 
-class Document extends Model {
-  async getId() {
-    return this.id
-  }
-
-  async getTitle() {
-    return this.title
-  }
-
-  async updateTitle(newTitle) {
-    this.title = newTitle
-    await this.save()
-  }
-
-  async getDocumentPath() {
-    return this.path
-  }
-
-  async updatePath(newPath) {
-    this.path = newPath
-    await this.save()
-  }
-
-  async getVectorDatabasePath() {
-    return this.vectorDatabasePath
-  }
-
-  async updateVectorDatabasePath(newPath) {
-    this.vectorDatabasePath = newPath
-    await this.save()
-  }
-
-  async getNotes() {
-    return this.notes
-  }
-
-  async addNote(noteID) {
-    this.notes.push(noteID)
-    await this.save()
-  }
-
-  async deleteNote(noteID) {
-    this.notes = this.notes.filter((note) => note !== noteID)
-    await this.save()
-  }
-
-  async getCreatedAt() {
-    return this.createdAt
-  }
-
-  async getUpdatedAt() {
-    return this.updatedAt
-  }
-
-  async updateUpdatedAt() {
-    this.updatedAt = new Date()
-    await this.save()
-  }
-}
-
-Document.init({
+const Document = sequelize.define('Document', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true
@@ -100,9 +40,7 @@ Document.init({
   }
 })
 
-class Note extends Model {}
-
-Note.init({
+const Note = sequelize.define('Note', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true
