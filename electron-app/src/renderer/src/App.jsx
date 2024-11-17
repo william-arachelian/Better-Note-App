@@ -2,7 +2,6 @@ import Versions from './components/Versions'
 import electronLogo from './assets/electron.svg'
 
 function App() {
-
   return (
     <>
       <div className="">
@@ -13,4 +12,3 @@ function App() {
 }
 
 export default App
-
